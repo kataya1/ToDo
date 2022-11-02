@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    /* this height is wiered when there is a scroll it becomes the initial page 100%, but if we don't write it it becomes fit content */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body{
+    /* looks like a sunny beach */
+    background-image: linear-gradient( hsl(195, 53%, 79%) ,hsl(60, 10%, 50%));
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    /* was fit-content before */
+    height: 100%; 
+}
+
+#history{
+    /* display: none; */
+    width: 0;
+    /* display: none; */
+    visibility:  hidden;
+    height: inherit;
+    background-color: white;
+}
+
+#todo{
+    /* because body is flex this is to center the todo-container */
+    margin: auto;
+    /* another way but we can't extend history with that */
+    /* width: 100%; */
+
+    /* display */
+    display: flex;
+    flex-direction: column;
+    
+    /* box model */
+    min-width: 450px;
+    min-height: 400px;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 4px;
+
+    /* styling */
+    background-color: #0000;
+    /* animation */
+    animation-name: vi;
+    animation-duration: 0.75s;
+
+    overflow: hidden;
+}
+h1{
+    color: white;
+    padding: 20px;
+    padding-left: 5px;
+    font-size: 38px;
+    font-weight: 600;
+    font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    letter-spacing: 4.36px;
+    line-height: 1.1;
+    font-style: normal;
+}
+
+#task-list{
+    background-color: #fff;
+    display: flex;
+    flex-direction:column;
+    box-shadow: 1px 1px 10px 1px #999b;
+
+}
+input[type="text"]{
+    margin-top: 20px;
+    background-color: #fffde783;
+
+    border: 0;
+    height: 40px;
+    border-radius: 2px;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 1px 2px 10px 1px #fff0B2a8;
+    transition: 0.7s;
+    outline: none;
+}
+input, #task-list{
+    border-radius: 5px;
+    
+
+}
+
+input:hover{
+    background-color: #fff8e1ec;
+    box-shadow: 1px 2px 10px 3px #fff0b2c9;
+}
+
+
+.task{
+    line-height: 1.5;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    /* 3 elements the text check and delete */
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    
+
+}
+
+span{
+    line-height: 1;
+    padding:5px;
+    width: 26px;
+    display: block;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.complete{
+    margin-left: auto;
+}
+.complete:hover{
+    cursor: pointer;
+    color:limegreen;
+}
+.delete:hover{
+    cursor: pointer;
+    color:tomato;
+}
+.complete:active{
+    color: white;
+    background-image: linear-gradient(hsl(249, 61%, 50%),hsl(120, 61%, 50%));
+}
+.delete:active{
+    color:white;
+    background-image: linear-gradient(hsl(308, 100%, 64%),hsl(9, 100%, 64%) );
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+ul{
+    list-style: none;
+}
+
+
+@keyframes vi {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+/********************************
+* *button
+*********************************/
+#history{
+    transition: 0.5s;
+    overflow: hidden;
+}
+#overlaybutton {
+    position: fixed;
+    display: inline-block;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    user-select: none;
+    border-radius: 20vmax;
+    bottom: 2vh;
+    right: -12vmax;
+    padding: 1vmax;
+    padding-right: 12vmax;
+    /* min-height: 40fr; */
+    transition: right 0.3s, padding-right 0.3s;
+    z-index: 1;
+}
+button svg{
+    transform: rotate(180deg);
+    transition: transform 0.4s;
+}
+
+#overlaybutton:hover{
+    right: -10vmax;
+    cursor: pointer;
+}
+
+/* #overlaybutton:active{
+    opacity: 0.85;
+	-webkit-box-shadow: 2em 2em 2em 0 rgba(0,0,0,0.2) ;
+	box-shadow: 2em 2em 2em 0 rgba(0,0,0,0.2) ;
+} */
+
+#overlaybutton[aria-pressed="true"]{
+    
+    right: 1vmax;
+    padding-right: 1vmax;
+    
+    
+}
+button[aria-pressed="true"] svg{
+    transform: rotate(0deg);
+}
